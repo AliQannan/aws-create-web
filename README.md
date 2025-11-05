@@ -1,6 +1,5 @@
 ## install dep 
 
-
 ```sh 
 npm install 
 ```
@@ -41,25 +40,42 @@ psql study-sync < db/sql/seed.sql -h localhost -U postgres
 psql postgresql://admin:admin123@localhost:5432/study-sync
 ```
 
+```sql
+SELECT * FROM questions;
+```
+
 
 # Install EB CLI
 ```sh
-brew install python@3.11
-```
+# 1️⃣ Update packages
+sudo apt update
 
+# 2️⃣ Install virtualenv from apt (recommended on Ubuntu 24.04)
+sudo apt install -y python3-virtualenv
+
+# 3️⃣ Verify it's installed
+virtualenv --version
+virtualenv -p python3 ~/ebcli-venv
+
+```
+## active it 
 ```sh
-pip install virtualenv
-virtualenv -p python3.11 ~/myenv
-source ~/myenv/bin/activate
-python --version
-pip install awsebcli --upgrade 
+source ~/ebcli-venv/bin/activate
+
+```
+##  Install the Elastic Beanstalk CLI
+```sh 
+pip install --upgrade pip
+pip install awsebcli --upgrade
+
 ```
 
 
 ## Manual Install if you don't have to do the virtual enviroment (optional)
 ```sh
 git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git
-python ./aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py
+sudo apt install python-is-python3
+python3 ./aws-elastic-beanstalk-cli-setup/scripts/ebcli_installer.py
 echo 'export PATH="/home/gitpod/.ebcli-virtual-env/executables:$PATH"' >> ~/.bash_profile && source ~/.bash_profile
 ```
 ## Initialize EB
