@@ -1,12 +1,12 @@
 import express from 'express';
 const app = express()
 import path from 'path';
-const port = process.env.PORT || 3000; 
 import pg from 'pg';
 const { Client } = pg
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv';
 dotenv.config();
+const port = process.env.PORT || 3000 ;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename); // ✅ Load environment variables from .env
 // Initialize PostgreSQL client
@@ -15,7 +15,7 @@ const client = new Client({
   connectionString: process.env.DATABASE_URL , // or other connection details
 });
 
-// Connect to PostgreSQL
+// // Connect to PostgreSQL
 client.connect().then(() => {
   console.log('Connected to PostgreSQL database');
 }).catch(err => {
@@ -139,3 +139,4 @@ app.get('/app.js', function(req, res) {
 
 console.log(`PLANNING TO USE PORT: ${port}`)
 app.listen(port, '0.0.0.0', () => console.log(`Listening on port ${port}!`))
+
